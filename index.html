@@ -170,6 +170,7 @@
 
          /*================= Drawing ===========================*/
          var time_old = 0;
+         //gl.polygonMode(GL_FRONT_AND_BACK, GL_LINE)
 
          var animate = function(time) {
 
@@ -190,7 +191,7 @@
             gl.uniformMatrix4fv(Vmatrix, false, view_matrix);
             gl.uniformMatrix4fv(Mmatrix, false, mov_matrix);
             gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer);
-            gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+            gl.drawElements(gl.LINES, indices.length, gl.UNSIGNED_SHORT, 0);
 
             window.requestAnimationFrame(animate);
          }
