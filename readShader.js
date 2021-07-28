@@ -1,6 +1,6 @@
 export default {
     GL: null,
-    getShaderText: function (scriptId) {
+    getShaderFromScriptID: function (scriptId) {
         // look up the script tag by id.
         let shaderScript = document.getElementById(scriptId);
         if (!shaderScript) {
@@ -19,9 +19,11 @@ export default {
         }
         return shader;
       },
-    compileAndLinkShaders: function () {
-        let shader_vertex_source=this.getShaderText("vertex");
-        let shader_fragment_source=this.getShaderText("fragment");
+    compileAndLinkShaders: async function () {
+        // let shader_vertex_source=this.getShaderFromScriptID("vertex");
+        // let shader_fragment_source=this.getShaderFromScriptID("fragment");
+        const shader_fragment_source = await (await fetch("./shader/fragment.glsl")).text();
+        const shader_vertex_source = await (await fetch("./shader/vertex.glsl")).text();
         
         let shader_vertex=this.getShader(shader_vertex_source, this.GL.VERTEX_SHADER, "VERTEX");
         let shader_fragment=this.getShader(shader_fragment_source, this.GL.FRAGMENT_SHADER, "FRAGMENT");
